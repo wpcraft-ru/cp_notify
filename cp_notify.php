@@ -68,7 +68,7 @@ class cases_loud_heiler {
                             update_user_meta(1,'cp'.$user->user_id,$data->user_email);
                             add_filter('wp_mail_content_type',create_function('', 'return "text/html";'));
                             if ($result->event_type == 'comment_added') $dob_str = '<br/><hr/><a href="'.$this->siteurl.'/'.$result->object_id.'#respond">Ответить</a> | <a href="'.$this->siteurl.'/'.$result->object_id.'#comment-'.$result->noticemeta.'">Просмотреть комментарий</a>';
-                            wp_mail($data->user_email,$title.$result->object_id,$result->delivery_content.$dob_str);                          
+                            wp_mail($data->user_email,$title.' ['.$result->object_id.']',$result->delivery_content.$dob_str);                          
                         }                    
                     }
                     $wpdb->update($this->events_table,array('delivered'=>1),array('event_id'=>$result->event_id));
